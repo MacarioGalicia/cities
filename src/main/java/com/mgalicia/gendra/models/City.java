@@ -32,6 +32,8 @@ public class City {
     private String timezone;                //  : the timezone id (see file timeZone.txt) varchar(40)
     private Date modification_date;         // : date of last modification in yyyy-MM-dd format
 
+    private final String FORMAT_DATE = "yyyy-MM-dd";
+
     public City() {
     }
 
@@ -57,7 +59,7 @@ public class City {
 
         this.timezone = data[17];
         try {
-            this.modification_date = new SimpleDateFormat("yyyy-MM-dd").parse(data[18]);
+            this.modification_date = new SimpleDateFormat(FORMAT_DATE).parse(data[18]);
         } catch (ParseException e) {
             _logger.info("Fecha de modificación invalida o inesistente");
             this.modification_date = null;
