@@ -1,6 +1,7 @@
 package com.mgalicia.gendra.controllers;
 
 import com.mgalicia.gendra.DTO.CityDTO;
+import com.mgalicia.gendra.helpers.DataHelper;
 import com.mgalicia.gendra.models.City;
 import com.mgalicia.gendra.services.ICityService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -46,7 +47,7 @@ public class CityController {
     public ResponseEntity<?> findSuggestions(@RequestParam() String q, @RequestParam(required = false, defaultValue = "0") float latitude, @RequestParam(required = false, defaultValue = "0") float longitude) {
         _logger.info("Petición de sugerencia de ciudades");
         Map<String, Object> response = new HashMap<>();
-        response.put("suggestions", _cityService.findBySuggestion(q, latitude, longitude));
+        response.put(DataHelper.SUGGESTIONS, _cityService.findBySuggestion(q, latitude, longitude));
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 

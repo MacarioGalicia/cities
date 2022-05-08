@@ -32,9 +32,8 @@ public class CityService implements ICityService {
 
     @Override
     public List<CityDTO> findBySuggestion(String q, float latitude, float longitude) {
-        List<City> cities = findByQueryName(q);
-        List<CityDTO> cityDTOS = cities.stream().map(c -> {
-            _logger.info("geonameid: " + c.getGeonameid());
+
+        List<CityDTO> cityDTOS = findByQueryName(q).stream().map(c -> {
             double score = 1;
             if (!c.getName().startsWith(q))
                 score = 0.5;
@@ -47,23 +46,16 @@ public class CityService implements ICityService {
             return cityDTO;
         }).collect(Collectors.toList());
 
+        // Ordenamiento de las ciudades por el atributo de puntuación 'scored'
         cityDTOS.sort(Comparator.comparing(CityDTO::getScore).reversed());
+        _logger.info("Listado de sugerencias de ciudades obtenido");
         return cityDTOS;
     }
 
     private double factorByCoordinates(float latitude, float originLatitude, float longitude, float originLongitude) {
-        _logger.info("olatitude: " + originLatitude);
-        _logger.info("0longitude: " + originLongitude);
-
-        _logger.info("latitude: " + latitude);
-        _logger.info("longitude: " + longitude);
-
 
         double lat = Math.abs(originLatitude > latitude ? originLatitude - latitude : latitude - originLatitude);
         double lon = Math.abs(originLongitude > longitude ? originLongitude - longitude : originLongitude - longitude);
-
-        _logger.info("lat: " + lat);
-        _logger.info("lon: " + lon);
 
         if (lat < 3 || lon < 3)
             return 0.1;
