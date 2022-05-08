@@ -1,12 +1,10 @@
 # Servicio de sugerencias de ciudades
 ## Autor: Ing. Macario Galicia Negrete
-## El archivo de la
-El servicio se encuentra publicado en [Google Cloud]:  [service].
 
-Documentación del servico [Swagger]: [swagger].
+El servicio se encuentra publicado en [Google Cloud]:  (https://default-1-t6n3y7evza-uc.a.run.app).
 
-[service]: https://default-1-t6n3y7evza-uc.a.run.app
-[swagger]: https://default-1-t6n3y7evza-uc.a.run.app/swagger-ui/index.html
+Documentación del servico [Swagger]: (https://default-1-t6n3y7evza-uc.a.run.app/swagger-ui/index.html).
+
 ---
 ## HTTP Get
 
